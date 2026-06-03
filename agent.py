@@ -121,6 +121,7 @@ app = compile_workflow(AgentState)
 
 #user entry_point
 #manually adding the observations to langfuse
+@observe(as_type="chain")
 def ask_question(question):
     initial_state = {
         "question": "",
@@ -128,12 +129,10 @@ def ask_question(question):
         "is_translated": False
     }
 
-    span = langfuse.start_observation(name="manual-span", as_type="chain")
-    span.update(input=question)
-    initial_state["question"] = question
-    result = app.invoke(initial_state)
-    span.update(output=result)
-    return result
+    with propagate_attributes(user_id="raaggee08"):
+        initial_state["question"] = question
+        result = app.invoke(initial_state)
+        return result
 
 ques = "Kya yeh sahi hai."
 correct_translate = ask_question(ques)
