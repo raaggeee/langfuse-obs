@@ -18,11 +18,9 @@ class Translate(BaseModel):
 
 key1 = os.getenv("AZURE_OPENAI_API_KEY1")
 key2 = os.getenv("AZURE_OPENAI_API_KEY2")
+endpoint1= os.getenv("AZURE_OPENAI_ENDPOINT1")
+endpoint2 = os.getenv("AZURE_OPENAI_ENDPOINT2")
 
-model_name = "gpt-5.4-nano"
-deployment_name = "gpt-5.4-nano"
-endpoint1= "https://himan-mn1s2e7k-eastus2.cognitiveservices.azure.com/"
-endpoint2 = "https://la-model.cognitiveservices.azure.com/"
 model_name = "gpt-5.4-nano"
 deployment_name = "gpt-5.4-nano"
 
